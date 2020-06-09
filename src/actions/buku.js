@@ -1,10 +1,10 @@
 import api from './api';
 
-export const ACTION_TYPES = {
-  CREATE: 'CREATE',
-  UPDATE: 'UPDATE',
-  DELETE: 'DELETE',
-  FETCH_ALL: 'FETCH_ALL',
+export const BUKU_ACTION_TYPES = {
+  CREATE: 'BUKU_CREATE',
+  UPDATE: 'BUKU_UPDATE',
+  DELETE: 'BUKU_DELETE',
+  FETCH_ALL: 'BUKU_FETCH_ALL',
 };
 
 export const fetchBuku = () => (dispatch) => {
@@ -13,7 +13,7 @@ export const fetchBuku = () => (dispatch) => {
     .fetchall()
     .then((response) => {
       dispatch({
-        type: ACTION_TYPES.FETCH_ALL,
+        type: BUKU_ACTION_TYPES.FETCH_ALL,
         payload: response.data,
       });
     })
@@ -25,7 +25,7 @@ export const createBuku = (data, onSuccess) => (dispatch) => {
     .perpustakaanApi('buku')
     .create(data)
     .then((res) => {
-      dispatch({ type: ACTION_TYPES.CREATE, payload: res.data });
+      dispatch({ type: BUKU_ACTION_TYPES.CREATE, payload: res.data });
       onSuccess();
     })
     .catch((err) => console.log(err));
@@ -37,7 +37,7 @@ export const updateBuku = (id, data, onSuccess) => (dispatch) => {
     .update(id, data)
     .then((res) => {
       dispatch({
-        type: ACTION_TYPES.UPDATE,
+        type: BUKU_ACTION_TYPES.UPDATE,
         payload: { id_member: id, ...data },
       });
       onSuccess();
@@ -50,7 +50,7 @@ export const deleteBuku = (id, onSuccess) => (dispatch) => {
     .perpustakaanApi('buku')
     .delete(id)
     .then((res) => {
-      dispatch({ type: ACTION_TYPES.DELETE, payload: id });
+      dispatch({ type: BUKU_ACTION_TYPES.DELETE, payload: id });
       onSuccess();
     })
     .catch((err) => console.log(err));

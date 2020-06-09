@@ -1,5 +1,6 @@
 {
   "name": "perpustakaan-crud",
+  "homepage": "https://L200180151.github.io/simple-perpustakaan-crud",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
