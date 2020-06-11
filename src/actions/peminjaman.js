@@ -11,10 +11,10 @@ export const fetchPeminjaman = () => (dispatch) => {
   api
     .peminjamanApi()
     .fetchall()
-    .then((response) => {
+    .then((res) => {
       dispatch({
         type: PEMINJAMAN_ACTION_TYPES.FETCH_ALL,
-        payload: response.data,
+        payload: res.data,
       });
     })
     .catch((err) => console.log(err));

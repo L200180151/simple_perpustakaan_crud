@@ -11,10 +11,10 @@ export const fetchMembers = () => (dispatch) => {
   api
     .perpustakaanApi('member')
     .fetchall()
-    .then((response) => {
+    .then((res) => {
       dispatch({
         type: MEMBER_ACTION_TYPES.FETCH_ALL,
-        payload: response.data,
+        payload: res.data,
       });
     })
     .catch((err) => console.log(err));

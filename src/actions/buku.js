@@ -11,10 +11,10 @@ export const fetchBuku = () => (dispatch) => {
   api
     .perpustakaanApi('buku')
     .fetchall()
-    .then((response) => {
+    .then((res) => {
       dispatch({
         type: BUKU_ACTION_TYPES.FETCH_ALL,
-        payload: response.data,
+        payload: res.data,
       });
     })
     .catch((err) => console.log(err));
@@ -38,7 +38,7 @@ export const updateBuku = (id, data, onSuccess) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: BUKU_ACTION_TYPES.UPDATE,
-        payload: { id_member: id, ...data },
+        payload: { id_buku: id, ...data },
       });
       onSuccess();
     })
