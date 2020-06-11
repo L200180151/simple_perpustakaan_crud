@@ -54,15 +54,28 @@ const MembersForm = ({ classes, ...props }) => {
     event.preventDefault();
     if (validate()) {
       if (props.currentId === 0) {
-        props.createNewMember(values, () => {
-          resetForm();
-          addToast('Berhasil membuat member baru', { appearance: 'success' });
-        });
+        props.createNewMember(
+          values,
+          () => {
+            resetForm();
+            addToast('Berhasil membuat member baru', { appearance: 'success' });
+          },
+          () => {
+            addToast('Gagal membuat member baru', { appearance: 'error' });
+          }
+        );
       } else {
-        props.updateMemberRecord(props.currentId, values, () => {
-          resetForm();
-          addToast('Berhasil mengupdate member', { appearance: 'success' });
-        });
+        props.updateMemberRecord(
+          props.currentId,
+          values,
+          () => {
+            resetForm();
+            addToast('Berhasil mengupdate member', { appearance: 'success' });
+          },
+          () => {
+            addToast('Gagal mengupdate member', { appearance: 'error' });
+          }
+        );
       }
     }
   };

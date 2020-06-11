@@ -20,7 +20,7 @@ export const fetchBuku = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const createBuku = (data, onSuccess) => (dispatch) => {
+export const createBuku = (data, onSuccess, onError) => (dispatch) => {
   api
     .perpustakaanApi('buku')
     .create(data)
@@ -28,10 +28,10 @@ export const createBuku = (data, onSuccess) => (dispatch) => {
       dispatch({ type: BUKU_ACTION_TYPES.CREATE, payload: res.data });
       onSuccess();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => onError());
 };
 
-export const updateBuku = (id, data, onSuccess) => (dispatch) => {
+export const updateBuku = (id, data, onSuccess, onError) => (dispatch) => {
   api
     .perpustakaanApi('buku')
     .update(id, data)
@@ -42,7 +42,7 @@ export const updateBuku = (id, data, onSuccess) => (dispatch) => {
       });
       onSuccess();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => onError());
 };
 
 export const deleteBuku = (id, onSuccess) => (dispatch) => {

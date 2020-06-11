@@ -20,7 +20,7 @@ export const fetchMembers = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const createMember = (data, onSuccess) => (dispatch) => {
+export const createMember = (data, onSuccess, onError) => (dispatch) => {
   api
     .perpustakaanApi('member')
     .create(data)
@@ -28,10 +28,10 @@ export const createMember = (data, onSuccess) => (dispatch) => {
       dispatch({ type: MEMBER_ACTION_TYPES.CREATE, payload: res.data });
       onSuccess();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => onError());
 };
 
-export const updateMember = (id, data, onSuccess) => (dispatch) => {
+export const updateMember = (id, data, onSuccess, onError) => (dispatch) => {
   api
     .perpustakaanApi('member')
     .update(id, data)
@@ -42,7 +42,7 @@ export const updateMember = (id, data, onSuccess) => (dispatch) => {
       });
       onSuccess();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => onError());
 };
 
 export const deleteMember = (id, onSuccess) => (dispatch) => {

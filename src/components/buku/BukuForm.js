@@ -54,15 +54,28 @@ const BukuForm = ({ classes, ...props }) => {
     event.preventDefault();
     if (validate()) {
       if (props.currentId === 0) {
-        props.createNewBuku(values, () => {
-          resetForm();
-          addToast('Berhasil membuat buku baru', { appearance: 'success' });
-        });
+        props.createNewBuku(
+          values,
+          () => {
+            resetForm();
+            addToast('Berhasil membuat buku baru', { appearance: 'success' });
+          },
+          () => {
+            addToast('Gagal membuat buku baru', { appearance: 'error' });
+          }
+        );
       } else {
-        props.updateBukuRecord(props.currentId, values, () => {
-          resetForm();
-          addToast('Berhasil mengupdate buku', { appearance: 'success' });
-        });
+        props.updateBukuRecord(
+          props.currentId,
+          values,
+          () => {
+            resetForm();
+            addToast('Berhasil mengupdate buku', { appearance: 'success' });
+          },
+          () => {
+            addToast('Gagal mengupdate buku', { appearance: 'error' });
+          }
+        );
       }
     }
   };
