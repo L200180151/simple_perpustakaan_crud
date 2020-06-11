@@ -92,6 +92,9 @@ const BukuForm = ({ classes, ...props }) => {
             value={values.judul}
             onChange={handleInputChange}
             fullWidth
+            inputProps={{
+              maxLength: 45,
+            }}
             {...(errors.judul && { error: true, helperText: errors.judul })}
           />
           <TextField
@@ -101,6 +104,9 @@ const BukuForm = ({ classes, ...props }) => {
             value={values.pengarang}
             onChange={handleInputChange}
             fullWidth
+            inputProps={{
+              maxLength: 45,
+            }}
             {...(errors.pengarang && {
               error: true,
               helperText: errors.pengarang,

@@ -92,6 +92,9 @@ const MembersForm = ({ classes, ...props }) => {
             value={values.nama}
             onChange={handleInputChange}
             fullWidth
+            inputProps={{
+              maxLength: 45,
+            }}
             {...(errors.nama && { error: true, helperText: errors.nama })}
           />
           <TextField
@@ -101,6 +104,9 @@ const MembersForm = ({ classes, ...props }) => {
             value={values.alamat}
             onChange={handleInputChange}
             fullWidth
+            inputProps={{
+              maxLength: 45,
+            }}
             {...(errors.alamat && { error: true, helperText: errors.alamat })}
           />
 
@@ -112,6 +118,9 @@ const MembersForm = ({ classes, ...props }) => {
             value={values.no_hp}
             onChange={handleInputChange}
             fullWidth
+            inputProps={{
+              maxLength: 12,
+            }}
             {...(errors.no_hp && { error: true, helperText: errors.no_hp })}
           />
           <div>
