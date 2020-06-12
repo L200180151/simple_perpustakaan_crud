@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/simple-perpustakaan-crud/static/css/main.a98249bf.chunk.css",
+    "main.js": "/simple-perpustakaan-crud/static/js/main.78b488f2.chunk.js",
+    "main.js.map": "/simple-perpustakaan-crud/static/js/main.78b488f2.chunk.js.map",
+    "runtime-main.js": "/simple-perpustakaan-crud/static/js/runtime-main.d22e0f64.js",
+    "runtime-main.js.map": "/simple-perpustakaan-crud/static/js/runtime-main.d22e0f64.js.map",
+    "static/js/2.d821d8eb.chunk.js": "/simple-perpustakaan-crud/static/js/2.d821d8eb.chunk.js",
+    "static/js/2.d821d8eb.chunk.js.map": "/simple-perpustakaan-crud/static/js/2.d821d8eb.chunk.js.map",
+    "index.html": "/simple-perpustakaan-crud/index.html",
+    "precache-manifest.d4c1739ae75920ef15cceeda1d4968df.js": "/simple-perpustakaan-crud/precache-manifest.d4c1739ae75920ef15cceeda1d4968df.js",
+    "service-worker.js": "/simple-perpustakaan-crud/service-worker.js",
+    "static/css/main.a98249bf.chunk.css.map": "/simple-perpustakaan-crud/static/css/main.a98249bf.chunk.css.map",
+    "static/js/2.d821d8eb.chunk.js.LICENSE.txt": "/simple-perpustakaan-crud/static/js/2.d821d8eb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d22e0f64.js",
+    "static/js/2.d821d8eb.chunk.js",
+    "static/css/main.a98249bf.chunk.css",
+    "static/js/main.78b488f2.chunk.js"
+  ]
+}
