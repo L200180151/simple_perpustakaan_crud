@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/simple-perpustakaan-crud/static/css/main.a98249bf.chunk.css",
-    "main.js": "/simple-perpustakaan-crud/static/js/main.78b488f2.chunk.js",
-    "main.js.map": "/simple-perpustakaan-crud/static/js/main.78b488f2.chunk.js.map",
-    "runtime-main.js": "/simple-perpustakaan-crud/static/js/runtime-main.d22e0f64.js",
-    "runtime-main.js.map": "/simple-perpustakaan-crud/static/js/runtime-main.d22e0f64.js.map",
-    "static/js/2.d821d8eb.chunk.js": "/simple-perpustakaan-crud/static/js/2.d821d8eb.chunk.js",
-    "static/js/2.d821d8eb.chunk.js.map": "/simple-perpustakaan-crud/static/js/2.d821d8eb.chunk.js.map",
-    "index.html": "/simple-perpustakaan-crud/index.html",
-    "precache-manifest.d4c1739ae75920ef15cceeda1d4968df.js": "/simple-perpustakaan-crud/precache-manifest.d4c1739ae75920ef15cceeda1d4968df.js",
-    "service-worker.js": "/simple-perpustakaan-crud/service-worker.js",
-    "static/css/main.a98249bf.chunk.css.map": "/simple-perpustakaan-crud/static/css/main.a98249bf.chunk.css.map",
-    "static/js/2.d821d8eb.chunk.js.LICENSE.txt": "/simple-perpustakaan-crud/static/js/2.d821d8eb.chunk.js.LICENSE.txt"
+    "main.css": "/simple_perpustakaan_crud/static/css/main.a98249bf.chunk.css",
+    "main.js": "/simple_perpustakaan_crud/static/js/main.a09a811a.chunk.js",
+    "main.js.map": "/simple_perpustakaan_crud/static/js/main.a09a811a.chunk.js.map",
+    "runtime-main.js": "/simple_perpustakaan_crud/static/js/runtime-main.b88e176c.js",
+    "runtime-main.js.map": "/simple_perpustakaan_crud/static/js/runtime-main.b88e176c.js.map",
+    "static/js/2.d821d8eb.chunk.js": "/simple_perpustakaan_crud/static/js/2.d821d8eb.chunk.js",
+    "static/js/2.d821d8eb.chunk.js.map": "/simple_perpustakaan_crud/static/js/2.d821d8eb.chunk.js.map",
+    "index.html": "/simple_perpustakaan_crud/index.html",
+    "precache-manifest.ae15835ee0e873682591dfb3ff0e968a.js": "/simple_perpustakaan_crud/precache-manifest.ae15835ee0e873682591dfb3ff0e968a.js",
+    "service-worker.js": "/simple_perpustakaan_crud/service-worker.js",
+    "static/css/main.a98249bf.chunk.css.map": "/simple_perpustakaan_crud/static/css/main.a98249bf.chunk.css.map",
+    "static/js/2.d821d8eb.chunk.js.LICENSE.txt": "/simple_perpustakaan_crud/static/js/2.d821d8eb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d22e0f64.js",
+    "static/js/runtime-main.b88e176c.js",
     "static/js/2.d821d8eb.chunk.js",
     "static/css/main.a98249bf.chunk.css",
-    "static/js/main.78b488f2.chunk.js"
+    "static/js/main.a09a811a.chunk.js"
   ]
 }
