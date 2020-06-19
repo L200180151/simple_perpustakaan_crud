@@ -1,6 +1,7 @@
 import api from './apiPeminjaman';
 
 export const PEMINJAMAN_ACTION_TYPES = {
+  LOADING: 'PEMINJAMAN_LOADING',
   CREATE: 'PEMINJAMAN_CREATE',
   UPDATE: 'PEMINJAMAN_UPDATE',
   DELETE: 'PEMINJAMAN_DELETE',
@@ -8,6 +9,9 @@ export const PEMINJAMAN_ACTION_TYPES = {
 };
 
 export const fetchPeminjaman = () => (dispatch) => {
+  dispatch({
+    type: PEMINJAMAN_ACTION_TYPES.LOADING,
+  });
   api
     .peminjamanApi()
     .fetchall()

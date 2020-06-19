@@ -1,15 +1,22 @@
 import { MEMBER_ACTION_TYPES } from '../actions/members';
 
 const initialState = {
+  loading: false,
   list: [],
 };
 
 export const membersRequest = (state = initialState, action = {}) => {
   switch (action.type) {
+    case MEMBER_ACTION_TYPES.LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case MEMBER_ACTION_TYPES.FETCH_ALL:
       return {
         ...state,
         list: [...action.payload],
+        loading: false,
       };
     case MEMBER_ACTION_TYPES.CREATE:
       return {

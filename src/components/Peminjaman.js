@@ -6,6 +6,7 @@ import {
   updatePeminjaman,
 } from '../actions/peminjaman';
 import {
+  CircularProgress,
   Grid,
   Paper,
   TableContainer,
@@ -29,6 +30,12 @@ const styles = (theme) => ({
   paper: {
     margin: theme.spacing(4),
     padding: theme.spacing(4),
+  },
+  form: {
+    marginLeft: '8%',
+  },
+  loading: {
+    margin: 'auto',
   },
 });
 
@@ -55,55 +62,59 @@ const Peminjaman = ({ classes, ...props }) => {
   return (
     <Paper className={classes.paper} elevation={3}>
       <Grid container>
-        <Grid item lg={12}>
-          <TableContainer>
-            <TableHead className={classes.root}>
-              <TableRow>
-                <TableCell>Nama Peminjam</TableCell>
-                <TableCell>Buku</TableCell>
-                <TableCell>Tanggal Peminjaman</TableCell>
-                <TableCell>Tanggal Pengembalian</TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {props.peminjamanList.map((record) => {
-                return (
-                  <TableRow key={record.id_peminjaman} hover>
-                    <TableCell>{record.nama}</TableCell>
-                    <TableCell>{record.judul}</TableCell>
-                    <TableCell>{record.tanggal_peminjaman}</TableCell>
-                    <TableCell>
-                      {record.tanggal_pengembalian === null
-                        ? 'Belum dikembalikan'
-                        : record.tanggal_pengembalian}
-                    </TableCell>
-                    <TableCell>
-                      <ButtonGroup variant="text">
-                        <Button>
-                          <Check
-                            color="primary"
-                            onClick={() => {
-                              onUpdatePeminjaman(record.id_peminjaman);
-                            }}
-                          />
-                        </Button>
-                        <Button>
-                          <Delete
-                            color="secondary"
-                            onClick={() => {
-                              onDelete(record.id_peminjaman);
-                            }}
-                          />
-                        </Button>
-                      </ButtonGroup>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </TableContainer>
-        </Grid>
+        {props.isLoading ? (
+          <CircularProgress className={classes.loading} />
+        ) : (
+          <Grid className={classes.form} item lg={12}>
+            <TableContainer>
+              <TableHead className={classes.root}>
+                <TableRow>
+                  <TableCell>Nama Peminjam</TableCell>
+                  <TableCell>Buku</TableCell>
+                  <TableCell>Tanggal Peminjaman</TableCell>
+                  <TableCell>Tanggal Pengembalian</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {props.peminjamanList.map((record) => {
+                  return (
+                    <TableRow key={record.id_peminjaman} hover>
+                      <TableCell>{record.nama}</TableCell>
+                      <TableCell>{record.judul}</TableCell>
+                      <TableCell>{record.tanggal_peminjaman}</TableCell>
+                      <TableCell>
+                        {record.tanggal_pengembalian === null
+                          ? 'Belum dikembalikan'
+                          : record.tanggal_pengembalian}
+                      </TableCell>
+                      <TableCell>
+                        <ButtonGroup variant="text">
+                          <Button>
+                            <Check
+                              color="primary"
+                              onClick={() => {
+                                onUpdatePeminjaman(record.id_peminjaman);
+                              }}
+                            />
+                          </Button>
+                          <Button>
+                            <Delete
+                              color="secondary"
+                              onClick={() => {
+                                onDelete(record.id_peminjaman);
+                              }}
+                            />
+                          </Button>
+                        </ButtonGroup>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </TableContainer>
+          </Grid>
+        )}
       </Grid>
     </Paper>
   );
@@ -112,6 +123,7 @@ const Peminjaman = ({ classes, ...props }) => {
 const mapStateToProps = (state) => {
   return {
     peminjamanList: state.peminjamanRequest.list,
+    isLoading: state.peminjamanRequest.loading,
   };
 };
 

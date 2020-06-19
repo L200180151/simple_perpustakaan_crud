@@ -4,6 +4,7 @@ import { fetchBuku, deleteBuku } from '../../actions/buku';
 import { createPeminjaman } from '../../actions/peminjaman';
 import BukuForm from './BukuForm';
 import {
+  CircularProgress,
   Grid,
   Paper,
   TableContainer,
@@ -27,6 +28,9 @@ const styles = (theme) => ({
   paper: {
     margin: theme.spacing(4),
     padding: theme.spacing(4),
+  },
+  loading: {
+    margin: 'auto',
   },
 });
 
@@ -59,57 +63,61 @@ const Buku = ({ classes, ...props }) => {
         <Grid item xs={6}>
           <BukuForm {...{ currentId, setCurrentId }} />
         </Grid>
-        <Grid item xs={6}>
-          <TableContainer>
-            <TableHead className={classes.root}>
-              <TableRow>
-                <TableCell>Judul</TableCell>
-                <TableCell>Pengarang</TableCell>
-                <TableCell>Tahun Terbit</TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {props.bukuList.map((record) => {
-                return (
-                  <TableRow key={record.id_buku} hover>
-                    <TableCell>{record.judul}</TableCell>
-                    <TableCell>{record.pengarang}</TableCell>
-                    <TableCell>{record.tahun_terbit}</TableCell>
-                    <TableCell>
-                      <ButtonGroup variant="text">
-                        <Button>
-                          <Add
-                            color="action"
-                            onClick={() => {
-                              onAddPeminjaman(record.id_buku);
-                            }}
-                          />
-                        </Button>
-                        <Button>
-                          <Edit
-                            color="primary"
-                            onClick={() => {
-                              setCurrentId(record.id_buku);
-                            }}
-                          />
-                        </Button>
-                        <Button>
-                          <Delete
-                            color="secondary"
-                            onClick={() => {
-                              onDelete(record.id_buku);
-                            }}
-                          />
-                        </Button>
-                      </ButtonGroup>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </TableContainer>
-        </Grid>
+        {props.isLoading ? (
+          <CircularProgress className={classes.loading} />
+        ) : (
+          <Grid item xs={6}>
+            <TableContainer>
+              <TableHead className={classes.root}>
+                <TableRow>
+                  <TableCell>Judul</TableCell>
+                  <TableCell>Pengarang</TableCell>
+                  <TableCell>Tahun Terbit</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {props.bukuList.map((record) => {
+                  return (
+                    <TableRow key={record.id_buku} hover>
+                      <TableCell>{record.judul}</TableCell>
+                      <TableCell>{record.pengarang}</TableCell>
+                      <TableCell>{record.tahun_terbit}</TableCell>
+                      <TableCell>
+                        <ButtonGroup variant="text">
+                          <Button>
+                            <Add
+                              color="action"
+                              onClick={() => {
+                                onAddPeminjaman(record.id_buku);
+                              }}
+                            />
+                          </Button>
+                          <Button>
+                            <Edit
+                              color="primary"
+                              onClick={() => {
+                                setCurrentId(record.id_buku);
+                              }}
+                            />
+                          </Button>
+                          <Button>
+                            <Delete
+                              color="secondary"
+                              onClick={() => {
+                                onDelete(record.id_buku);
+                              }}
+                            />
+                          </Button>
+                        </ButtonGroup>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </TableContainer>
+          </Grid>
+        )}
       </Grid>
     </Paper>
   );
@@ -118,6 +126,7 @@ const Buku = ({ classes, ...props }) => {
 const mapStateToProps = (state) => {
   return {
     bukuList: state.bukuRequest.list,
+    isLoading: state.bukuRequest.loading,
   };
 };
 

@@ -1,15 +1,22 @@
 import { BUKU_ACTION_TYPES } from '../actions/buku';
 
 const initialState = {
+  loading: false,
   list: [],
 };
 
 export const bukuRequest = (state = initialState, action = {}) => {
   switch (action.type) {
+    case BUKU_ACTION_TYPES.LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case BUKU_ACTION_TYPES.FETCH_ALL:
       return {
         ...state,
         list: [...action.payload],
+        loading: false,
       };
     case BUKU_ACTION_TYPES.CREATE:
       return {

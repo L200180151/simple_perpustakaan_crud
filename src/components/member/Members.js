@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchMembers, deleteMember } from '../../actions/members';
 import {
+  CircularProgress,
   Grid,
   Paper,
   TableContainer,
@@ -27,6 +28,9 @@ const styles = (theme) => ({
     margin: theme.spacing(4),
     padding: theme.spacing(4),
   },
+  loading: {
+    margin: 'auto',
+  },
 });
 
 const Members = ({ classes, ...props }) => {
@@ -51,49 +55,53 @@ const Members = ({ classes, ...props }) => {
         <Grid item xs={6}>
           <MembersForm {...{ currentId, setCurrentId }} />
         </Grid>
-        <Grid item xs={6}>
-          <TableContainer>
-            <TableHead className={classes.root}>
-              <TableRow>
-                <TableCell>Nama</TableCell>
-                <TableCell>Alamat</TableCell>
-                <TableCell>No HP</TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {props.membersList.map((record) => {
-                return (
-                  <TableRow key={record.id_member} hover>
-                    <TableCell>{record.nama}</TableCell>
-                    <TableCell>{record.alamat}</TableCell>
-                    <TableCell>{record.no_hp}</TableCell>
-                    <TableCell>
-                      <ButtonGroup variant="text">
-                        <Button>
-                          <Edit
-                            color="primary"
-                            onClick={() => {
-                              setCurrentId(record.id_member);
-                            }}
-                          />
-                        </Button>
-                        <Button>
-                          <Delete
-                            color="secondary"
-                            onClick={() => {
-                              onDelete(record.id_member);
-                            }}
-                          />
-                        </Button>
-                      </ButtonGroup>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </TableContainer>
-        </Grid>
+        {props.isLoading ? (
+          <CircularProgress className={classes.loading} />
+        ) : (
+          <Grid item xs={6}>
+            <TableContainer>
+              <TableHead className={classes.root}>
+                <TableRow>
+                  <TableCell>Nama</TableCell>
+                  <TableCell>Alamat</TableCell>
+                  <TableCell>No HP</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {props.membersList.map((record) => {
+                  return (
+                    <TableRow key={record.id_member} hover>
+                      <TableCell>{record.nama}</TableCell>
+                      <TableCell>{record.alamat}</TableCell>
+                      <TableCell>{record.no_hp}</TableCell>
+                      <TableCell>
+                        <ButtonGroup variant="text">
+                          <Button>
+                            <Edit
+                              color="primary"
+                              onClick={() => {
+                                setCurrentId(record.id_member);
+                              }}
+                            />
+                          </Button>
+                          <Button>
+                            <Delete
+                              color="secondary"
+                              onClick={() => {
+                                onDelete(record.id_member);
+                              }}
+                            />
+                          </Button>
+                        </ButtonGroup>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </TableContainer>
+          </Grid>
+        )}
       </Grid>
     </Paper>
   );
@@ -102,6 +110,7 @@ const Members = ({ classes, ...props }) => {
 const mapStateToProps = (state) => {
   return {
     membersList: state.membersRequest.list,
+    isLoading: state.membersRequest.loading,
   };
 };
 

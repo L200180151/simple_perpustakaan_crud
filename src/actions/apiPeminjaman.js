@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://127.0.0.1:5000/';
+const baseUrl = 'https://l200180151-perpustakaan-api.herokuapp.com/';
 
 export default {
   peminjamanApi(url = baseUrl + 'peminjaman') {

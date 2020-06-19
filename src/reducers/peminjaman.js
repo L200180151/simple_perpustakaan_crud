@@ -1,15 +1,22 @@
 import { PEMINJAMAN_ACTION_TYPES } from '../actions/peminjaman';
 
 const initialState = {
+  loading: false,
   list: [],
 };
 
 export const peminjamanRequest = (state = initialState, action = {}) => {
   switch (action.type) {
+    case PEMINJAMAN_ACTION_TYPES.LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case PEMINJAMAN_ACTION_TYPES.FETCH_ALL:
       return {
         ...state,
         list: [...action.payload],
+        loading: false,
       };
     case PEMINJAMAN_ACTION_TYPES.CREATE:
       return {

@@ -1,6 +1,7 @@
 import api from './api';
 
 export const BUKU_ACTION_TYPES = {
+  LOADING: 'BUKU_LOADING',
   CREATE: 'BUKU_CREATE',
   UPDATE: 'BUKU_UPDATE',
   DELETE: 'BUKU_DELETE',
@@ -8,6 +9,9 @@ export const BUKU_ACTION_TYPES = {
 };
 
 export const fetchBuku = () => (dispatch) => {
+  dispatch({
+    type: BUKU_ACTION_TYPES.LOADING,
+  });
   api
     .perpustakaanApi('buku')
     .fetchall()

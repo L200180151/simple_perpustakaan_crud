@@ -1,6 +1,7 @@
 import api from './api';
 
 export const MEMBER_ACTION_TYPES = {
+  LOADING: 'MEMBER_LOADING',
   CREATE: 'MEMBER_CREATE',
   UPDATE: 'MEMBER_UPDATE',
   DELETE: 'MEMBER_DELETE',
@@ -8,6 +9,9 @@ export const MEMBER_ACTION_TYPES = {
 };
 
 export const fetchMembers = () => (dispatch) => {
+  dispatch({
+    type: MEMBER_ACTION_TYPES.LOADING,
+  });
   api
     .perpustakaanApi('member')
     .fetchall()
