@@ -1,22 +1,9 @@
 import React, { useEffect } from 'react';
-import { Grid, Button, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import useForm from '../useForm';
 import { createMember, updateMember } from '../../actions/members';
 import { useToasts } from 'react-toast-notifications';
-import CustomTextField from '../CustomTextField';
-
-const styles = (theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      marginBottom: theme.spacing(3),
-      marginRight: theme.spacing(3),
-    },
-  },
-  buttonMargin: {
-    margin: theme.spacing(1),
-  },
-});
+import CustomForm from '../CustomForm';
 
 const initialFieldValues = {
   nama: '',
@@ -24,17 +11,11 @@ const initialFieldValues = {
   no_hp: '',
 };
 
-const MembersForm = ({ classes, ...props }) => {
+const MembersForm = ({ ...props }) => {
   const { addToast } = useToasts();
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    // if ('nama' in fieldValues)
-    //   temp.nama = fieldValues.nama ? '' : 'Tidak boleh kosong';
-    // if ('alamat' in fieldValues)
-    //   temp.alamat = fieldValues.alamat ? '' : 'Tidak boleh kosong';
-    // if ('no_hp' in fieldValues)
-    //   temp.no_hp = fieldValues.no_hp ? '' : 'Tidak boleh kosong';
     Object.keys(initialFieldValues).forEach((key) => {
       if (key in fieldValues) {
         temp[key] = fieldValues[key] ? '' : 'Tidak boleh kosong';
@@ -86,22 +67,6 @@ const MembersForm = ({ classes, ...props }) => {
     }
   };
 
-  const renderTextField = () => {
-    return Object.keys(initialFieldValues).map((key) => {
-      return (
-        <CustomTextField
-          name={key}
-          label={key}
-          value={values[key]}
-          handleInputChange={handleInputChange}
-          errorAttribute={{
-            ...(errors[key] && { error: true, helperText: errors[key] }),
-          }}
-        />
-      );
-    });
-  };
-
   useEffect(() => {
     if (props.currentId !== 0) {
       setValues({
@@ -112,35 +77,14 @@ const MembersForm = ({ classes, ...props }) => {
   }, [props.currentId]);
 
   return (
-    <form
-      autoComplete="off"
-      noValidate
-      className={classes.root}
-      onSubmit={handleSubmit}
-    >
-      <Grid container>
-        <Grid item xs={12}>
-          {renderTextField()}
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              className={classes.buttonMargin}
-            >
-              Submit
-            </Button>
-            <Button
-              variant="contained"
-              className={classes.buttonMargin}
-              onClick={resetForm}
-            >
-              Reset
-            </Button>
-          </div>
-        </Grid>
-      </Grid>
-    </form>
+    <CustomForm
+      fields={initialFieldValues}
+      values={values}
+      errors={errors}
+      handleInputChange={handleInputChange}
+      handleSubmit={handleSubmit}
+      resetForm={resetForm}
+    />
   );
 };
 
@@ -155,7 +99,4 @@ const mapDispatchToProps = {
   updateMemberRecord: updateMember,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(MembersForm));
+export default connect(mapStateToProps, mapDispatchToProps)(MembersForm);
