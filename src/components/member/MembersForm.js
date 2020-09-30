@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { Grid, TextField, Button, withStyles } from '@material-ui/core';
+import { Grid, Button, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import useForm from '../useForm';
 import { createMember, updateMember } from '../../actions/members';
 import { useToasts } from 'react-toast-notifications';
+import CustomTextField from '../CustomTextField';
 
 const styles = (theme) => ({
   root: {
@@ -28,12 +29,17 @@ const MembersForm = ({ classes, ...props }) => {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ('nama' in fieldValues)
-      temp.nama = fieldValues.nama ? '' : 'Tidak boleh kosong';
-    if ('alamat' in fieldValues)
-      temp.alamat = fieldValues.alamat ? '' : 'Tidak boleh kosong';
-    if ('no_hp' in fieldValues)
-      temp.no_hp = fieldValues.no_hp ? '' : 'Tidak boleh kosong';
+    // if ('nama' in fieldValues)
+    //   temp.nama = fieldValues.nama ? '' : 'Tidak boleh kosong';
+    // if ('alamat' in fieldValues)
+    //   temp.alamat = fieldValues.alamat ? '' : 'Tidak boleh kosong';
+    // if ('no_hp' in fieldValues)
+    //   temp.no_hp = fieldValues.no_hp ? '' : 'Tidak boleh kosong';
+    Object.keys(initialFieldValues).forEach((key) => {
+      if (key in fieldValues) {
+        temp[key] = fieldValues[key] ? '' : 'Tidak boleh kosong';
+      }
+    });
     setErrors({
       ...temp,
     });
@@ -80,6 +86,22 @@ const MembersForm = ({ classes, ...props }) => {
     }
   };
 
+  const renderTextField = () => {
+    return Object.keys(initialFieldValues).map((key) => {
+      return (
+        <CustomTextField
+          name={key}
+          label={key}
+          value={values[key]}
+          handleInputChange={handleInputChange}
+          errorAttribute={{
+            ...(errors[key] && { error: true, helperText: errors[key] }),
+          }}
+        />
+      );
+    });
+  };
+
   useEffect(() => {
     if (props.currentId !== 0) {
       setValues({
@@ -98,44 +120,7 @@ const MembersForm = ({ classes, ...props }) => {
     >
       <Grid container>
         <Grid item xs={12}>
-          <TextField
-            name="nama"
-            variant="outlined"
-            label="Nama"
-            value={values.nama}
-            onChange={handleInputChange}
-            fullWidth
-            inputProps={{
-              maxLength: 45,
-            }}
-            {...(errors.nama && { error: true, helperText: errors.nama })}
-          />
-          <TextField
-            name="alamat"
-            variant="outlined"
-            label="Alamat"
-            value={values.alamat}
-            onChange={handleInputChange}
-            fullWidth
-            inputProps={{
-              maxLength: 45,
-            }}
-            {...(errors.alamat && { error: true, helperText: errors.alamat })}
-          />
-
-          <TextField
-            name="no_hp"
-            variant="outlined"
-            label="No HP"
-            type="number"
-            value={values.no_hp}
-            onChange={handleInputChange}
-            fullWidth
-            inputProps={{
-              maxLength: 12,
-            }}
-            {...(errors.no_hp && { error: true, helperText: errors.no_hp })}
-          />
+          {renderTextField()}
           <div>
             <Button
               variant="contained"
