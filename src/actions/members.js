@@ -1,4 +1,4 @@
-import api from './api';
+import { api } from './api';
 
 export const MEMBER_ACTION_TYPES = {
   LOADING: 'MEMBER_LOADING',
@@ -12,8 +12,7 @@ export const fetchMembers = () => (dispatch) => {
   dispatch({
     type: MEMBER_ACTION_TYPES.LOADING,
   });
-  api
-    .perpustakaanApi('member')
+  api('member')
     .fetchall()
     .then((res) => {
       dispatch({
@@ -25,8 +24,7 @@ export const fetchMembers = () => (dispatch) => {
 };
 
 export const createMember = (data, onSuccess, onError) => (dispatch) => {
-  api
-    .perpustakaanApi('member')
+  api('member')
     .create(data)
     .then((res) => {
       dispatch({ type: MEMBER_ACTION_TYPES.CREATE, payload: res.data });
@@ -36,8 +34,7 @@ export const createMember = (data, onSuccess, onError) => (dispatch) => {
 };
 
 export const updateMember = (id, data, onSuccess, onError) => (dispatch) => {
-  api
-    .perpustakaanApi('member')
+  api('member')
     .update(id, data)
     .then((res) => {
       dispatch({
@@ -50,8 +47,7 @@ export const updateMember = (id, data, onSuccess, onError) => (dispatch) => {
 };
 
 export const deleteMember = (id, onSuccess) => (dispatch) => {
-  api
-    .perpustakaanApi('member')
+  api('member')
     .delete(id)
     .then((res) => {
       dispatch({ type: MEMBER_ACTION_TYPES.DELETE, payload: id });

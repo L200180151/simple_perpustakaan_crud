@@ -1,4 +1,4 @@
-import api from './api';
+import { api } from './api';
 
 export const BUKU_ACTION_TYPES = {
   LOADING: 'BUKU_LOADING',
@@ -12,8 +12,7 @@ export const fetchBuku = () => (dispatch) => {
   dispatch({
     type: BUKU_ACTION_TYPES.LOADING,
   });
-  api
-    .perpustakaanApi('buku')
+  api('buku')
     .fetchall()
     .then((res) => {
       dispatch({
@@ -25,19 +24,17 @@ export const fetchBuku = () => (dispatch) => {
 };
 
 export const createBuku = (data, onSuccess, onError) => (dispatch) => {
-  api
-    .perpustakaanApi('buku')
+  api('buku')
     .create(data)
     .then((res) => {
       dispatch({ type: BUKU_ACTION_TYPES.CREATE, payload: res.data });
       onSuccess();
     })
-    .catch((err) => onError());
+    .catch((_) => onError());
 };
 
 export const updateBuku = (id, data, onSuccess, onError) => (dispatch) => {
-  api
-    .perpustakaanApi('buku')
+  api('buku')
     .update(id, data)
     .then((res) => {
       dispatch({
@@ -46,12 +43,11 @@ export const updateBuku = (id, data, onSuccess, onError) => (dispatch) => {
       });
       onSuccess();
     })
-    .catch((err) => onError());
+    .catch((_) => onError());
 };
 
 export const deleteBuku = (id, onSuccess) => (dispatch) => {
-  api
-    .perpustakaanApi('buku')
+  api('buku')
     .delete(id)
     .then((res) => {
       dispatch({ type: BUKU_ACTION_TYPES.DELETE, payload: id });

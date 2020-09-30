@@ -1,4 +1,4 @@
-import api from './apiPeminjaman';
+import { peminjamanApi } from './api';
 
 export const PEMINJAMAN_ACTION_TYPES = {
   LOADING: 'PEMINJAMAN_LOADING',
@@ -12,8 +12,7 @@ export const fetchPeminjaman = () => (dispatch) => {
   dispatch({
     type: PEMINJAMAN_ACTION_TYPES.LOADING,
   });
-  api
-    .peminjamanApi()
+  peminjamanApi()
     .fetchall()
     .then((res) => {
       dispatch({
@@ -25,8 +24,7 @@ export const fetchPeminjaman = () => (dispatch) => {
 };
 
 export const createPeminjaman = (id, onSuccess) => (dispatch) => {
-  api
-    .peminjamanApi()
+  peminjamanApi()
     .create(id)
     .then((res) => {
       dispatch({ type: PEMINJAMAN_ACTION_TYPES.CREATE, payload: res.data });
@@ -36,8 +34,7 @@ export const createPeminjaman = (id, onSuccess) => (dispatch) => {
 };
 
 export const updatePeminjaman = (id, onSuccess) => (dispatch) => {
-  api
-    .peminjamanApi()
+  peminjamanApi()
     .update(id)
     .then((res) => {
       dispatch({
@@ -50,8 +47,7 @@ export const updatePeminjaman = (id, onSuccess) => (dispatch) => {
 };
 
 export const deletePeminjaman = (id, onSuccess) => (dispatch) => {
-  api
-    .peminjamanApi()
+  peminjamanApi()
     .delete(id)
     .then((res) => {
       dispatch({ type: PEMINJAMAN_ACTION_TYPES.DELETE, payload: id });
